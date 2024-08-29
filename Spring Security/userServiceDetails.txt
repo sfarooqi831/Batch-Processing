@@ -1,0 +1,53 @@
+			 Date : 28-02-2023
+		    Spring Boot and Microservices
+			6AM | Mr. Raghu | (ASHOK IT)
+--------------------------------------------------------------------------
+1) User Register Process : Create one HTML Form, to store user data in
+				database.
+
+2) Password Encoder & User Login/Logout:
+    Convert Readable password to unreadable format (ie encode)
+    Security Configuration for Login/Logout
+
+Q) Can we define two classes with same name in Java?
+A) Yes. It is possible. But they must exist in different packages.
+package com.app;
+class A{}
+
+package one.test;
+class A{}
+
+Ex: Date class with java.util and java.sql packages
+
+
+*) We have create one class User(com.app.raghu), which holds
+   Register Form data and stores with database.
+
+*) Spring Security has given class name 
+     User(org.sf.security.core.userdetails)
+   which implements UserDetails(I) which holds data for login 
+   operations.
+
+*) We need to define one class that implements UserDetailsService(I)
+  and override methods loadUserbyUsername(username)
+  that reads data from DB as Entity class User object and converts
+  into Spring Security user object.
+
+*) We call in general as Role. But in coding it is: Authority.
+  GrantedAuthority(I) : Allocated Roles to a User
+
+Ex: App#1 : Roles : ADMIN, CUSTOMER, MANAGER, SALES, SERVICE, TEST
+
+ User#1 : SAM , Allocated Role: SALES, SERVICE 
+    ie called as SAM has 2 GrantedAuthorities
+
+*) SimpleGrantedAuthority(C) is a class that implements 
+  GrantedAuthority(I), which is String role only internally.
+===================================================================
+LazyInitializationException: failed to lazily initialize a collection of role: com.app.raghu.entity.User.userRoles, 
+could not initialize proxy - no Session
+
+Use : FetchType.EAGER at Collection Mapping
+
+*) Security Config with DaoAuthenticationManager(UserDetailsManager,
+    PasswordEncoder) and SecurityFilterChain.

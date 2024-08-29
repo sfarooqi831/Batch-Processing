@@ -1,0 +1,62 @@
+
+Important Link [https://spring.io/guides/gs/securing-web/]
+  *************************************** Spring Security Is Just Like Simple English ****************************
+
+* Security is used to protect the data and bussiness logic.
+* Security is non-functional requirement.
+* It should be implement from Development  phase.
+* Security doesn't mean that youre losing the data but the trust of the user which you have build over the years.
+* Authentication: Verifying the user credentails it is always done before wo;authorization.If authentication fails it i will give 401(UnAuthroized) error response.
+* Authorization: Verifying the role and providing the services.403(Forbidden) error response will appear if it fails and always done after authentication.
+* Spring Security provides the basic security for the Boot applicaition. It uses the cookies.
+* To customize the security we need to use the WebSecurityConfigurerAdapter. There are two method which provides authentication and authorization.
+* For every security applicaition passwordEncoder must be provided.
+                ************************ Types Of Authrization *****************************
+ - permitAll() -> no security is required
+ - authenticated -> login required but No Role
+ - hasAuthority -> Login Required + Matching Role
+ - hashAnyAuthrity -> Login + List[Rules]
+ - anyRequest -> which represents the remaining urls
+                ************************Internal Flow fo SS*****************************
+* AuthenticationFilter that intercepts the request and perfrom the authentication by delegating the request to the AuthenticationManager if the requests is successfully processe then it stores that authentication details in the springContext.
+* Authentication: is the proces to validate the user details.
+* AuthenticationManager: Once received the requests from it delgates the request to the AuthenticationProvider validating the user details.
+* AuthenticationProvider: it has all the details of validating the user details using the UserDetialsService and PasswordEncoder
+             *********************************** User configurations ******************
+* In-Memory Authentication [ Configuring credentails users with in our applicaition, if we have limited clients]
+* JDBC Authentication [ Configuring credentails in JDBC, if its public applicaition and high consumers] ***
+* LDAP [ Configuring user credentails in DS(Directory Service) - In House projects where one user will access    multiple Softwares ]
+* UserDetailsService [By using the ORM Concepts]
+* Default Credentials provided by the spring security.
+* We can configure the credentails in applicaition.properties file.
+
+JDBCAuthentication:- It stores the data in table and validate the login details. It works on the sql queries provided by the programer
+UserDetailsService: It stores the data in the table and validate the login details using the ORM concept.
+
+     ********************************
+Security:
+ How can i implement the security to my applicaition so there wouldn't be security breaches in my applicaition.
+Password:
+  How to store validate them ecnode, decode  them using idustry standary encruption algorithms.
+Users & Roles:
+  How to maintain the user level security based on their role.
+Multiple  Logins:
+  How can i implement a mechanism where the user will login only and start using the applicaition.
+Preventing Attacks:
+   How to prevent security attacks like brute force, stealing the data and session fixation.
+JWT & Outh2
+********************************** Authorization ********************************
+We can do the following customization 
+ - for which URLS where ToGo
+ - Login Form [Default Login Page]
+ - Logout [ Default is /logout]
+ - Exception Handling [we can customize]
+ 
+********************************** USER Service Details *************************
+For this 
+
+
+** Authentication Manager (Checks userName & pwd) in case of session which comes in From based Authentication
+, but as there is no session we have to manually create the AuthenticationManager bean.
+
+
